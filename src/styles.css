@@ -166,197 +166,283 @@
   }
 }
 
-/* NL Arquitetos — diagnóstico */
+
+/* NL Arquitetos — diagnóstico premium */
 .nl-root {
-  --graphite: #3A3A3A;
+  --graphite: #232323;
+  --ink: #14100D;
   --white: #FFFFFF;
-  --bronze: #8B7355;
-  --ice: #F5F5F5;
-  --muted: #777777;
-  --divider: #D1D1D1;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-6: 48px;
-  --space-8: 64px;
-  background: var(--ice);
+  --bronze: #A8814F;
+  --bronze-deep: #8B6B3E;
+  --ivory: #F4F1EC;
+  --muted: #7A736B;
+  --divider: #DED8D0;
+  background: var(--ivory);
   color: var(--graphite);
-  font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Onest', system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
-.nl-root .page {
+.nl-root .nl-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-4);
 }
 
-.nl-root .sheet {
-  width: 100%;
-  max-width: 960px;
-  background: var(--white);
-  border: 1px solid var(--divider);
-  opacity: 0;
-  transform: translateY(8px);
-  animation: nl-rise 0.5s ease-out forwards;
+/* ---------- Left / editorial ---------- */
+.nl-root .nl-pitch { position: relative; overflow: hidden; background: var(--ink); }
+
+.nl-root .nl-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(35%) contrast(1.05);
+  transform: scale(1.04);
+  animation: nl-drift 18s ease-out forwards;
 }
 
-@keyframes nl-rise { to { opacity: 1; transform: translateY(0); } }
+@keyframes nl-drift { to { transform: scale(1); } }
 
-@media (prefers-reduced-motion: reduce) {
-  .nl-root .sheet { animation: none; opacity: 1; transform: none; }
+.nl-root .nl-veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20,16,13,0.86) 0%, rgba(20,16,13,0.62) 45%, rgba(20,16,13,0.92) 100%);
 }
 
-.nl-root .sheet-inner { display: grid; grid-template-columns: 1.15fr 1fr; }
-
-.nl-root .col-pitch {
-  padding: var(--space-8) var(--space-6);
-  border-right: 1px solid var(--divider);
-}
-
-.nl-root .col-form {
-  padding: var(--space-8) var(--space-6);
-  background: var(--ice);
+.nl-root .nl-pitch-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 56px;
+  min-height: 100vh;
+  padding: 56px clamp(32px, 5vw, 76px);
+  color: #EDE8E1;
+  opacity: 0;
+  animation: nl-rise 0.7s 0.05s ease-out forwards;
 }
 
-.nl-root .mark { margin-bottom: var(--space-6); }
+@keyframes nl-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
 .nl-root .mark-nl {
   display: block;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 600;
-  font-size: 22px;
-  letter-spacing: 1px;
-  color: var(--graphite);
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: #F6F2EC;
 }
 .nl-root .mark-arq {
   display: block;
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--muted);
-  margin-top: 2px;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: rgba(246,242,236,0.55);
+  margin-top: 4px;
 }
 
 .nl-root .kicker {
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-size: 10px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--bronze);
-  margin: 0 0 var(--space-2) 0;
+  margin: 0 0 20px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.nl-root .kicker::before {
+  content: "";
+  width: 34px; height: 1px;
+  background: var(--bronze);
 }
 
 .nl-root h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 1.2;
-  color: var(--graphite);
-  margin: 0 0 var(--space-3) 0;
-  max-width: 20ch;
+  font-weight: 400;
+  font-size: clamp(38px, 4.2vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #F8F5F0;
+  margin: 0 0 22px 0;
+  max-width: 15ch;
 }
+.nl-root h1 em { font-style: italic; color: var(--bronze); }
 
 .nl-root .sub {
   font-size: 15px;
-  line-height: 1.6;
-  color: var(--graphite);
-  max-width: 38ch;
-  margin: 0 0 var(--space-6) 0;
+  line-height: 1.7;
+  color: rgba(240,235,228,0.72);
+  max-width: 40ch;
+  margin: 0 0 44px 0;
 }
 
+.nl-root .nl-steps {
+  list-style: none;
+  margin: 0; padding: 0;
+  border-top: 1px solid rgba(246,242,236,0.14);
+  max-width: 46ch;
+}
+.nl-root .nl-steps li {
+  display: flex;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(246,242,236,0.14);
+}
+.nl-root .nl-step-n {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--bronze);
+  padding-top: 2px;
+  min-width: 24px;
+}
+.nl-root .nl-steps strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #F1ECE5;
+  margin-bottom: 3px;
+}
+.nl-root .nl-steps span { font-size: 12.5px; line-height: 1.6; color: rgba(240,235,228,0.55); }
+
 .nl-root .trust {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 36ch;
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--divider);
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  line-height: 1.8;
+  text-transform: uppercase;
+  color: rgba(240,235,228,0.45);
+  max-width: 44ch;
   margin: 0;
 }
 
-.nl-root .field { margin-bottom: var(--space-3); }
+/* ---------- Right / form ---------- */
+.nl-root .nl-form-col {
+  background: var(--ivory);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 56px clamp(28px, 4.5vw, 72px) 28px;
+}
+
+.nl-root .nl-form-wrap {
+  margin: auto 0;
+  width: 100%;
+  max-width: 420px;
+  opacity: 0;
+  animation: nl-rise 0.7s 0.18s ease-out forwards;
+}
+
+.nl-root .nl-form-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--bronze-deep);
+  margin: 0 0 14px 0;
+}
+
+.nl-root .nl-form-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.2;
+  color: var(--graphite);
+  margin: 0 0 26px 0;
+}
+
+.nl-root .nl-rule { height: 1px; background: var(--divider); margin-bottom: 30px; }
+
+.nl-root .field { margin-bottom: 22px; }
 
 .nl-root .field label {
   display: block;
-  font-family: "Courier New", monospace;
-  font-size: 10px;
-  letter-spacing: 1.5px;
+  font-size: 9.5px;
+  letter-spacing: 2.2px;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .nl-root .field input,
 .nl-root .field select {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--divider);
-  background: var(--white);
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
   color: var(--graphite);
-  font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  font-size: 14px;
+  font-family: inherit;
+  font-size: 15px;
   appearance: none;
   -webkit-appearance: none;
   border-radius: 0;
+  transition: border-color 0.2s ease;
 }
 
+.nl-root .field input::placeholder { color: #B6AEA4; }
+
 .nl-root .field select {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%23777777'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%23A8814F'/></svg>");
   background-repeat: no-repeat;
-  background-position: right 14px center;
+  background-position: right 2px center;
 }
 
 .nl-root .field input:focus,
-.nl-root .field select:focus { outline: none; border-color: var(--bronze); }
+.nl-root .field select:focus { outline: none; border-bottom-color: var(--bronze); }
 
 .nl-root .consent {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  margin-bottom: var(--space-4);
+  gap: 10px;
+  margin: 28px 0 26px;
 }
-
 .nl-root .consent input { margin-top: 3px; accent-color: var(--bronze); width: auto; }
-
-.nl-root .consent span { font-size: 12px; line-height: 1.5; color: var(--muted); }
+.nl-root .consent span { font-size: 12px; line-height: 1.6; color: var(--muted); }
 
 .nl-root button[type="submit"] {
   width: 100%;
-  padding: 15px;
-  background: var(--bronze);
-  color: var(--white);
+  padding: 17px;
+  background: var(--graphite);
+  color: #F6F2EC;
   border: none;
-  font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
+.nl-root button[type="submit"]:hover { background: var(--bronze-deep); transform: translateY(-1px); }
+.nl-root button[type="submit"]:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
 
-.nl-root button[type="submit"]:hover { background: #74604A; }
-.nl-root button[type="submit"]:focus-visible { outline: 2px solid var(--graphite); outline-offset: 2px; }
+.nl-root .nl-note {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #A79E93;
+}
 
 .nl-root .footer {
-  text-align: center;
-  padding: var(--space-4);
-  font-family: "Courier New", monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-size: 9.5px;
+  letter-spacing: 2.6px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #A79E93;
+  padding-top: 32px;
+  border-top: 1px solid var(--divider);
 }
 
-@media (max-width: 760px) {
-  .nl-root .sheet-inner { grid-template-columns: 1fr; }
-  .nl-root .col-pitch { border-right: none; border-bottom: 1px solid var(--divider); padding: var(--space-6) var(--space-4); }
-  .nl-root .col-form { padding: var(--space-6) var(--space-4); }
-  .nl-root h1 { font-size: 30px; }
+@media (prefers-reduced-motion: reduce) {
+  .nl-root .nl-bg, .nl-root .nl-pitch-inner, .nl-root .nl-form-wrap { animation: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .nl-root .nl-split { grid-template-columns: 1fr; }
+  .nl-root .nl-pitch-inner { min-height: auto; padding: 44px 28px; gap: 40px; }
+  .nl-root .nl-form-col { padding: 44px 28px 24px; }
+  .nl-root .nl-form-wrap { max-width: none; }
 }
