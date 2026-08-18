@@ -33,20 +33,17 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AssetWise" },
-      { name: "description", content: "Internal asset & equipment tracking tool" },
-      { property: "og:title", content: "AssetWise" },
-      { name: "twitter:title", content: "AssetWise" },
-      { property: "og:description", content: "Internal asset & equipment tracking tool" },
-      { name: "twitter:description", content: "Internal asset & equipment tracking tool" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/KoUaltGzqoVfSfQv3CIsHyhMxAp2/social-images/social-1774646906152-AssetWise-Insights-Lovable-03-27-2026_05_28_PM.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/KoUaltGzqoVfSfQv3CIsHyhMxAp2/social-images/social-1774646906152-AssetWise-Insights-Lovable-03-27-2026_05_28_PM.webp" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:type", content: "website" },
+      { title: "NL Arquitetos" },
+      { name: "description", content: "Arquitetura como decisão — diagnóstico gratuito." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -56,7 +53,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
