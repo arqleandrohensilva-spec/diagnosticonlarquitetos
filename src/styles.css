@@ -181,13 +181,14 @@
   color: var(--graphite);
   font-family: 'Onest', system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .nl-root .nl-split {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  min-height: 100vh;
+  height: 100dvh;
 }
 
 /* ---------- Left / editorial ---------- */
@@ -214,9 +215,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 56px;
-  min-height: 100vh;
-  padding: 56px clamp(32px, 5vw, 76px);
+  gap: clamp(16px, 3vh, 40px);
+  height: 100%;
+  padding: clamp(24px, 4.5vh, 52px) clamp(32px, 5vw, 76px);
+  overflow: hidden;
   color: #EDE8E1;
   opacity: 0;
   animation: nl-rise 0.7s 0.05s ease-out forwards;
@@ -245,7 +247,7 @@
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--bronze);
-  margin: 0 0 20px 0;
+  margin: 0 0 clamp(10px, 1.8vh, 18px) 0;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -259,11 +261,11 @@
 .nl-root h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 400;
-  font-size: clamp(38px, 4.2vw, 58px);
+  font-size: clamp(30px, min(4vw, 5.4vh), 54px);
   line-height: 1.08;
   letter-spacing: -0.01em;
   color: #F8F5F0;
-  margin: 0 0 22px 0;
+  margin: 0 0 clamp(10px, 1.8vh, 20px) 0;
   max-width: 15ch;
 }
 .nl-root h1 em { font-style: italic; color: var(--bronze); }
@@ -273,7 +275,8 @@
   line-height: 1.7;
   color: rgba(240,235,228,0.72);
   max-width: 40ch;
-  margin: 0 0 44px 0;
+  margin: 0 0 clamp(16px, 3.4vh, 40px) 0;
+  font-size: clamp(13px, 1.6vh, 15px);
 }
 
 .nl-root .nl-steps {
@@ -285,7 +288,7 @@
 .nl-root .nl-steps li {
   display: flex;
   gap: 20px;
-  padding: 18px 0;
+  padding: clamp(8px, 1.5vh, 17px) 0;
   border-bottom: 1px solid rgba(246,242,236,0.14);
 }
 .nl-root .nl-step-n {
@@ -322,7 +325,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 56px clamp(28px, 4.5vw, 72px) 28px;
+  padding: clamp(24px, 4.5vh, 52px) clamp(28px, 4.5vw, 72px) clamp(16px, 2.4vh, 26px);
+  height: 100%;
+  overflow: hidden;
 }
 
 .nl-root .nl-form-wrap {
@@ -344,15 +349,15 @@
 .nl-root .nl-form-title {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 400;
-  font-size: 30px;
+  font-size: clamp(22px, 3.2vh, 30px);
   line-height: 1.2;
   color: var(--graphite);
-  margin: 0 0 26px 0;
+  margin: 0 0 clamp(12px, 2.2vh, 24px) 0;
 }
 
-.nl-root .nl-rule { height: 1px; background: var(--divider); margin-bottom: 30px; }
+.nl-root .nl-rule { height: 1px; background: var(--divider); margin-bottom: clamp(14px, 2.6vh, 28px); }
 
-.nl-root .field { margin-bottom: 22px; }
+.nl-root .field { margin-bottom: clamp(10px, 2vh, 20px); }
 
 .nl-root .field label {
   display: block;
@@ -394,14 +399,14 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin: 28px 0 26px;
+  margin: clamp(14px, 2.6vh, 26px) 0 clamp(12px, 2.4vh, 24px);
 }
 .nl-root .consent input { margin-top: 3px; accent-color: var(--bronze); width: auto; }
 .nl-root .consent span { font-size: 12px; line-height: 1.6; color: var(--muted); }
 
 .nl-root button[type="submit"] {
   width: 100%;
-  padding: 17px;
+  padding: clamp(12px, 1.9vh, 17px);
   background: var(--graphite);
   color: #F6F2EC;
   border: none;
@@ -419,7 +424,7 @@
 .nl-root button[type="submit"]:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
 
 .nl-root .nl-note {
-  margin: 16px 0 0;
+  margin: clamp(8px, 1.5vh, 15px) 0 0;
   text-align: center;
   font-size: 10px;
   letter-spacing: 1.6px;
@@ -432,7 +437,7 @@
   letter-spacing: 2.6px;
   text-transform: uppercase;
   color: #A79E93;
-  padding-top: 32px;
+  padding-top: clamp(12px, 2.4vh, 28px);
   border-top: 1px solid var(--divider);
 }
 
@@ -441,8 +446,9 @@
 }
 
 @media (max-width: 900px) {
-  .nl-root .nl-split { grid-template-columns: 1fr; }
-  .nl-root .nl-pitch-inner { min-height: auto; padding: 44px 28px; gap: 40px; }
-  .nl-root .nl-form-col { padding: 44px 28px 24px; }
+  .nl-root { height: auto; overflow: visible; }
+  .nl-root .nl-split { grid-template-columns: 1fr; height: auto; }
+  .nl-root .nl-pitch-inner { height: auto; overflow: visible; padding: 44px 28px; gap: 40px; }
+  .nl-root .nl-form-col { height: auto; overflow: visible; padding: 44px 28px 24px; }
   .nl-root .nl-form-wrap { max-width: none; }
 }
