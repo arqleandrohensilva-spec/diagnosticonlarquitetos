@@ -181,13 +181,14 @@
   color: var(--graphite);
   font-family: 'Onest', system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .nl-root .nl-split {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  min-height: 100vh;
+  height: 100dvh;
 }
 
 /* ---------- Left / editorial ---------- */
