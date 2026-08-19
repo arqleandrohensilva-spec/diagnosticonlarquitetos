@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import heroImg from '@/assets/arq-hero.jpg';
+import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/')({
   component: DiagnosticoPage,
@@ -43,7 +44,7 @@ function DiagnosticoPage() {
   const [situacao, setSituacao] = useState('');
   const [consent, setConsent] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!consent) {
       toast.error('É necessário aceitar o contato para continuar.');
@@ -52,6 +53,17 @@ function DiagnosticoPage() {
     const mensagem = `Olá! Gostaria de solicitar o diagnóstico gratuito. Meu nome é ${nome}. Situação: ${
       situacoes[situacao] ?? situacao
     }.`;
+
+    try {
+      await supabase.from('leads').insert({
+        nome,
+        whatsapp,
+        situacao: situacoes[situacao] ?? situacao,
+      });
+    } catch {
+      // falha no banco não impede o envio
+    }
+
     window.open(
       `https://wa.me/5512996235559?text=${encodeURIComponent(mensagem)}`,
       '_blank',
@@ -74,11 +86,7 @@ function DiagnosticoPage() {
 
             <div className="nl-pitch-body">
               <p className="kicker">Diagnóstico gratuito</p>
-              <h1>
-                Antes de construir,
-                <em> entenda exatamente </em>
-                o que o seu projeto precisa.
-              </h1>
+              <h1>Antes de construir, entenda exatamente o que o seu projeto precisa.</h1>
               <p className="sub">
                 Uma leitura técnica do seu terreno ou imóvel, feita por arquitetos — sem
                 compromisso, sem custo.

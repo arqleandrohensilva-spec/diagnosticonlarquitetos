@@ -169,12 +169,12 @@
 
 /* NL Arquitetos — diagnóstico premium */
 .nl-root {
-  --graphite: #232323;
-  --ink: #14100D;
+  --graphite: #3A3A3A;
+  --ink: #3A3A3A;
   --white: #FFFFFF;
-  --bronze: #A8814F;
-  --bronze-deep: #8B6B3E;
-  --ivory: #F4F1EC;
+  --bronze: #8B7355;
+  --bronze-deep: #74604A;
+  --ivory: #F5F5F5;
   --muted: #7A736B;
   --divider: #DED8D0;
   background: var(--ivory);
