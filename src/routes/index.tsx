@@ -43,6 +43,7 @@ function DiagnosticoPage() {
   const [whatsapp, setWhatsapp] = useState('');
   const [situacao, setSituacao] = useState('');
   const [consent, setConsent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -50,6 +51,7 @@ function DiagnosticoPage() {
       toast.error('É necessário aceitar o contato para continuar.');
       return;
     }
+    setIsSubmitting(true);
     const mensagem = `Olá! Gostaria de solicitar o diagnóstico gratuito. Meu nome é ${nome}. Situação: ${
       situacoes[situacao] ?? situacao
     }.`;
@@ -64,11 +66,13 @@ function DiagnosticoPage() {
       // falha no banco não impede o envio
     }
 
-    window.open(
-      `https://wa.me/5512996235559?text=${encodeURIComponent(mensagem)}`,
-      '_blank',
-      'noopener,noreferrer',
-    );
+    const url = `https://wa.me/5512996235559?text=${encodeURIComponent(mensagem)}`;
+    const win = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!win) {
+      window.location.href = url;
+    }
+
+    setIsSubmitting(false);
   }
 
 
@@ -148,7 +152,9 @@ function DiagnosticoPage() {
                 <span>Aceito receber contato da NL Arquitetos sobre meu diagnóstico.</span>
               </label>
 
-              <button type="submit">Quero meu diagnóstico</button>
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Enviando...' : 'Quero meu diagnóstico'}
+              </button>
               <p className="nl-note">Resposta em até 24h úteis, após conversa rápida com o arquiteto · Sem custo · Sem compromisso</p>
             </form>
           </div>
