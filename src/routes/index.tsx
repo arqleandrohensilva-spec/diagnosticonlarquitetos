@@ -74,11 +74,7 @@ function DiagnosticoPage() {
 
             <div className="nl-pitch-body">
               <p className="kicker">Diagnóstico gratuito</p>
-              <h1>
-                Antes de construir,
-                <em> entenda exatamente </em>
-                o que o seu projeto precisa.
-              </h1>
+              <h1>Antes de construir, entenda exatamente o que o seu projeto precisa.</h1>
               <p className="sub">
                 Uma leitura técnica do seu terreno ou imóvel, feita por arquitetos — sem
                 compromisso, sem custo.
