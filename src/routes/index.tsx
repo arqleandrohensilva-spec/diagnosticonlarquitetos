@@ -27,7 +27,7 @@ export const Route = createFileRoute('/')({
 
 const etapas = [
   { n: '01', t: 'Leitura do terreno', d: 'Potencial construtivo, orientação solar e restrições legais.' },
-  { n: '02', t: 'Direção de projeto', d: 'Programa, partido arquitetônico e estimativa de investimento.' },
+  { n: '02', t: 'Direção de projeto', d: 'Programa e partido arquitetônico inicial.' },
   { n: '03', t: 'Caminho até a obra', d: 'Documentação, aprovação e acompanhamento executivo.' },
 ];
 
@@ -131,7 +131,7 @@ function DiagnosticoPage() {
               </label>
 
               <button type="submit">Quero meu diagnóstico</button>
-              <p className="nl-note">Resposta em até 24h úteis · Sem custo · Sem compromisso</p>
+              <p className="nl-note">Resposta em até 24h úteis, após conversa rápida com o arquiteto · Sem custo · Sem compromisso</p>
             </form>
           </div>
 
