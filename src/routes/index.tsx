@@ -31,6 +31,12 @@ const etapas = [
   { n: '03', t: 'Caminho até a obra', d: 'Documentação, aprovação e acompanhamento executivo.' },
 ];
 
+const situacoes: Record<string, string> = {
+  terreno: 'Tenho terreno e não sei por onde começar',
+  aluguel: 'Estou no aluguel, pensando em construir',
+  reforma: 'Já tenho imóvel e quero reformar',
+};
+
 function DiagnosticoPage() {
   const [nome, setNome] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
@@ -43,12 +49,16 @@ function DiagnosticoPage() {
       toast.error('É necessário aceitar o contato para continuar.');
       return;
     }
-    toast.success('Recebemos seus dados! Entraremos em contato pelo WhatsApp.');
-    setNome('');
-    setWhatsapp('');
-    setSituacao('');
-    setConsent(false);
+    const mensagem = `Olá! Gostaria de solicitar o diagnóstico gratuito. Meu nome é ${nome}. Situação: ${
+      situacoes[situacao] ?? situacao
+    }. WhatsApp para contato: ${whatsapp}.`;
+    window.open(
+      `https://wa.me/5512996235559?text=${encodeURIComponent(mensagem)}`,
+      '_blank',
+      'noopener,noreferrer',
+    );
   }
+
 
   return (
     <div className="nl-root">
