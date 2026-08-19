@@ -51,7 +51,7 @@ function DiagnosticoPage() {
     }
     const mensagem = `Olá! Gostaria de solicitar o diagnóstico gratuito. Meu nome é ${nome}. Situação: ${
       situacoes[situacao] ?? situacao
-    }. WhatsApp para contato: ${whatsapp}.`;
+    }.`;
     window.open(
       `https://wa.me/5512996235559?text=${encodeURIComponent(mensagem)}`,
       '_blank',
