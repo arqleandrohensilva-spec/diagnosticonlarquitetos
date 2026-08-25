@@ -27,9 +27,9 @@ export const Route = createFileRoute('/')({
 });
 
 const etapas = [
-  { n: '01', t: 'Leitura do terreno', d: 'Potencial construtivo, orientação solar e restrições legais.' },
-  { n: '02', t: 'Direção de projeto', d: 'Programa e partido arquitetônico inicial.' },
-  { n: '03', t: 'Caminho até a obra', d: 'Documentação, aprovação e acompanhamento executivo.' },
+  { n: '01', t: 'Leitura técnica do caso', d: 'Riscos e decisões que só aparecem com análise — do terreno ou do imóvel, conforme sua situação.' },
+  { n: '02', t: 'Caminho recomendado', d: 'Tipo de projeto, documentação necessária e prazo estimado.' },
+  { n: '03', t: 'Próximo passo', d: 'Uma proposta detalhada, só depois que fizer sentido pra você.' },
 ];
 
 const situacoes: Record<string, string> = {
