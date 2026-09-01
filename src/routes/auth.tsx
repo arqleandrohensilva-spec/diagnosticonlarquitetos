@@ -43,14 +43,20 @@ function AuthPage() {
         if (error) throw error;
         navigate({ to: '/leads', replace: true });
       } else {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password: senha,
           options: { emailRedirectTo: `${window.location.origin}/leads` },
         });
         if (error) throw error;
-        toast.success('Conta criada. Faça login para continuar.');
-        setMode('login');
+        if (data.session) {
+          toast.success('Acesso criado com sucesso.');
+          navigate({ to: '/leads', replace: true });
+        } else {
+          toast.success('Conta criada. Faça login para continuar.');
+          setMode('login');
+        }
+
       }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Não foi possível entrar.');
