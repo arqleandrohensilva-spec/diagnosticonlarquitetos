@@ -175,6 +175,9 @@ export type Database = {
           id: string
           nome: string
           situacao: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
           whatsapp: string
         }
         Insert: {
@@ -182,6 +185,9 @@ export type Database = {
           id?: string
           nome: string
           situacao?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           whatsapp: string
         }
         Update: {
@@ -189,6 +195,9 @@ export type Database = {
           id?: string
           nome?: string
           situacao?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           whatsapp?: string
         }
         Relationships: []
