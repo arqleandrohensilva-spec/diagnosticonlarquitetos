@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute, useSearch } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import heroImg from '@/assets/arq-hero.jpg';
 import { supabase } from '@/integrations/supabase/client';
@@ -45,6 +45,18 @@ function DiagnosticoPage() {
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const search = useSearch({ from: '/' });
+  const [utmSource, setUtmSource] = useState<string | null>(null);
+  const [utmMedium, setUtmMedium] = useState<string | null>(null);
+  const [utmCampaign, setUtmCampaign] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = search as Record<string, unknown>;
+    setUtmSource(typeof params.utm_source === 'string' ? params.utm_source : null);
+    setUtmMedium(typeof params.utm_medium === 'string' ? params.utm_medium : null);
+    setUtmCampaign(typeof params.utm_campaign === 'string' ? params.utm_campaign : null);
+  }, [search]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!consent) {
@@ -61,6 +73,9 @@ function DiagnosticoPage() {
         nome,
         whatsapp,
         situacao: situacoes[situacao] ?? situacao,
+        utm_source: utmSource,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
       });
     } catch {
       // falha no banco não impede o envio
