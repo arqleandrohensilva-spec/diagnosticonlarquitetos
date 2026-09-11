@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute, useSearch } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import heroImg from '@/assets/arq-hero.jpg';
 import { supabase } from '@/integrations/supabase/client';
