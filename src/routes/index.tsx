@@ -73,6 +73,9 @@ function DiagnosticoPage() {
         nome,
         whatsapp,
         situacao: situacoes[situacao] ?? situacao,
+        utm_source: utmSource,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
       });
     } catch {
       // falha no banco não impede o envio
