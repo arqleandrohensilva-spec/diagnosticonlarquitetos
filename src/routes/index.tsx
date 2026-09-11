@@ -45,6 +45,18 @@ function DiagnosticoPage() {
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const search = useSearch({ from: '/' });
+  const [utmSource, setUtmSource] = useState<string | null>(null);
+  const [utmMedium, setUtmMedium] = useState<string | null>(null);
+  const [utmCampaign, setUtmCampaign] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = search as Record<string, unknown>;
+    setUtmSource(typeof params.utm_source === 'string' ? params.utm_source : null);
+    setUtmMedium(typeof params.utm_medium === 'string' ? params.utm_medium : null);
+    setUtmCampaign(typeof params.utm_campaign === 'string' ? params.utm_campaign : null);
+  }, [search]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!consent) {
