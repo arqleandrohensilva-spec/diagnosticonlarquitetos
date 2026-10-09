@@ -37,7 +37,7 @@ export const Route = createFileRoute('/api/public/get-leads-for-hub')({
 
         const { data, error } = await supabaseAdmin
           .from('leads')
-          .select('id, nome, whatsapp, situacao, utm_source, utm_medium, utm_campaign, created_at')
+          .select('id, nome, whatsapp, situacao, utm_source, utm_medium, utm_campaign, utm_content, created_at')
           .order('created_at', { ascending: false })
 
         if (error) {

@@ -28,6 +28,7 @@ interface Lead {
   utm_source: string | null;
   utm_medium: string | null;
   utm_campaign: string | null;
+  utm_content: string | null;
   created_at: string;
 }
 
@@ -192,6 +193,7 @@ function LeadsPage() {
                   <th className="px-4 py-3">Fonte</th>
                   <th className="px-4 py-3">Medium</th>
                   <th className="px-4 py-3">Campanha</th>
+                  <th className="px-4 py-3">Conteúdo</th>
                   <th className="px-4 py-3">Data</th>
                 </tr>
               </thead>
@@ -208,6 +210,7 @@ function LeadsPage() {
                     <td className="px-4 py-3">{lead.utm_source ?? '—'}</td>
                     <td className="px-4 py-3">{lead.utm_medium ?? '—'}</td>
                     <td className="px-4 py-3">{lead.utm_campaign ?? '—'}</td>
+                    <td className="px-4 py-3">{lead.utm_content ?? '—'}</td>
                     <td className="px-4 py-3">
                       {lead.created_at ? new Date(lead.created_at).toLocaleString('pt-BR') : '—'}
                     </td>

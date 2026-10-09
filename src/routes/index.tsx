@@ -39,26 +39,31 @@ const situacoes: Record<string, string> = {
   terreno: 'Tenho terreno e não sei por onde começar',
   aluguel: 'Estou no aluguel, pensando em construir',
   reforma: 'Já tenho imóvel e quero reformar',
+  comercial: 'Tenho um negócio e quero projetar o espaço',
 };
 
 function DiagnosticoPage() {
+  const search = useSearch({ from: '/' });
   const [nome, setNome] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
-  const [situacao, setSituacao] = useState('');
+  const [situacao, setSituacao] = useState(() =>
+    (search as Record<string, unknown>).utm_content === 'projeto-comercial' ? 'comercial' : '',
+  );
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const search = useSearch({ from: '/' });
   const heroCopy = getDiagnosisCopy((search as Record<string, unknown>).utm_content);
   const [utmSource, setUtmSource] = useState<string | null>(null);
   const [utmMedium, setUtmMedium] = useState<string | null>(null);
   const [utmCampaign, setUtmCampaign] = useState<string | null>(null);
+  const [utmContent, setUtmContent] = useState<string | null>(null);
 
   useEffect(() => {
     const params = search as Record<string, unknown>;
     setUtmSource(typeof params.utm_source === 'string' ? params.utm_source : null);
     setUtmMedium(typeof params.utm_medium === 'string' ? params.utm_medium : null);
     setUtmCampaign(typeof params.utm_campaign === 'string' ? params.utm_campaign : null);
+    setUtmContent(typeof params.utm_content === 'string' ? params.utm_content : null);
   }, [search]);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -80,6 +85,7 @@ function DiagnosticoPage() {
         utm_source: utmSource,
         utm_medium: utmMedium,
         utm_campaign: utmCampaign,
+        utm_content: utmContent,
       });
     } catch {
       // falha no banco não impede o envio
@@ -160,6 +166,7 @@ function DiagnosticoPage() {
                   <option value="terreno">Tenho terreno e não sei por onde começar</option>
                   <option value="aluguel">Estou no aluguel, pensando em construir</option>
                   <option value="reforma">Já tenho imóvel e quero reformar</option>
+                  <option value="comercial">Tenho um negócio e quero projetar o espaço</option>
                 </select>
               </div>
 
