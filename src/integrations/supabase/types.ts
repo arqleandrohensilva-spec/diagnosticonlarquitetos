@@ -176,6 +176,7 @@ export type Database = {
           nome: string
           situacao: string | null
           utm_campaign: string | null
+          utm_content: string | null
           utm_medium: string | null
           utm_source: string | null
           whatsapp: string
@@ -186,6 +187,7 @@ export type Database = {
           nome: string
           situacao?: string | null
           utm_campaign?: string | null
+          utm_content?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           whatsapp: string
@@ -196,6 +198,7 @@ export type Database = {
           nome?: string
           situacao?: string | null
           utm_campaign?: string | null
+          utm_content?: string | null
           utm_medium?: string | null
           utm_source?: string | null
           whatsapp?: string
