@@ -1,19 +1,37 @@
+import leandroPhoto from '@/assets/leandro-henrique.jpg.asset.json';
+import neandroPhoto from '@/assets/neandro-jacque.jpg.asset.json';
+
 type Founder = {
   name: string;
   registration: string;
-  photo?: { src: string; alt: string };
+  photo?: { src: string; alt: string; width: number; height: number };
 };
 
 const founders: Founder[] = [
-  { name: 'Leandro Henrique', registration: 'A252250-0' },
-  { name: 'Neandro Jacque', registration: 'A264629-3' },
+  {
+    name: 'Leandro Henrique',
+    registration: 'A252250-0',
+    photo: { src: leandroPhoto.url, alt: 'Leandro Henrique, arquiteto e co-fundador da NL Arquitetos', width: 552, height: 690 },
+  },
+  {
+    name: 'Neandro Jacque',
+    registration: 'A264629-3',
+    photo: { src: neandroPhoto.url, alt: 'Neandro Jacque, arquiteto e co-fundador da NL Arquitetos', width: 508, height: 635 },
+  },
 ];
 
 function FounderProfile({ founder }: { founder: Founder }) {
   return (
     <article className="nl-founder">
       {founder.photo && (
-        <img className="nl-founder-photo" src={founder.photo.src} alt={founder.photo.alt} loading="lazy" width={480} height={600} />
+        <img
+          className="nl-founder-photo"
+          src={founder.photo.src}
+          alt={founder.photo.alt}
+          loading="lazy"
+          width={founder.photo.width}
+          height={founder.photo.height}
+        />
       )}
       <h3>{founder.name}</h3>
       <p className="nl-founder-role">Arquiteto · Co-fundador</p>

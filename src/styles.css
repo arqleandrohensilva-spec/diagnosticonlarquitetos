@@ -513,6 +513,8 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   margin-bottom: 24px;
+  border: 1px solid var(--divider);
+  filter: grayscale(6%) contrast(1.02);
 }
 
 .nl-root .nl-final {
