@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791572472981,
+      "tag": "0000_add_utm_content_to_leads",
+      "breakpoints": true
+    }
+  ]
+}
