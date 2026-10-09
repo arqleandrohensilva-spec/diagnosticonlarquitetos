@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner";
 import appCss from "../styles.css?url";
 import { GOOGLE_ADS_ID } from "@/lib/google-ads";
+import { META_PIXEL_SNIPPET } from "@/lib/meta-pixel";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ gtag('js', new Date());
 gtag('config', '${GOOGLE_ADS_ID}');`,
           }}
         />
+        <script dangerouslySetInnerHTML={{ __html: META_PIXEL_SNIPPET }} />
       </head>
       <body>
         {children}
