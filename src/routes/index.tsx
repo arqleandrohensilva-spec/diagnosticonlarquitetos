@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import heroImg from '@/assets/arq-hero.jpg';
 import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { DiagnosisFounders } from '@/components/diagnosis-founders';
+import { getDiagnosisCopy } from '@/lib/diagnosis-copy';
 
 export const Route = createFileRoute('/')({
   component: DiagnosticoPage,
@@ -46,6 +49,7 @@ function DiagnosticoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const search = useSearch({ from: '/' });
+  const heroCopy = getDiagnosisCopy((search as Record<string, unknown>).utm_content);
   const [utmSource, setUtmSource] = useState<string | null>(null);
   const [utmMedium, setUtmMedium] = useState<string | null>(null);
   const [utmCampaign, setUtmCampaign] = useState<string | null>(null);
@@ -105,11 +109,8 @@ function DiagnosticoPage() {
 
             <div className="nl-pitch-body">
               <p className="kicker">Diagnóstico gratuito</p>
-              <h1>Antes de construir, entenda exatamente o que o seu projeto precisa.</h1>
-              <p className="sub">
-                Uma leitura técnica do seu terreno ou imóvel, feita por arquitetos — sem
-                compromisso, sem custo.
-              </p>
+              <h1>{heroCopy.title}</h1>
+              <p className="sub">{heroCopy.subtitle}</p>
 
               <ol className="nl-steps">
                 {etapas.map(e => (
@@ -134,7 +135,7 @@ function DiagnosticoPage() {
             <h2 className="nl-form-title">Três informações. Uma resposta clara.</h2>
             <div className="nl-rule" />
 
-            <form onSubmit={handleSubmit}>
+            <form id="diagnostico-form" onSubmit={handleSubmit}>
               <div className="field">
                 <label htmlFor="nome">Nome completo</label>
                 <input id="nome" required value={nome} onChange={e => setNome(e.target.value)} placeholder="Seu nome" />
@@ -177,6 +178,28 @@ function DiagnosticoPage() {
           <footer className="footer">NL Arquitetos · A arquitetura como decisão</footer>
         </section>
       </div>
+      <DiagnosisFounders />
+      <section className="nl-final" aria-labelledby="nl-final-title">
+        <div className="nl-section-inner">
+          <h2 id="nl-final-title">Três informações. Uma resposta clara.</h2>
+          <Button
+            type="button"
+            variant="ghost"
+            className="nl-final-cta"
+            onClick={() => {
+              const form = document.getElementById('diagnostico-form');
+              const firstField = document.getElementById('nome');
+              form?.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+                block: 'center',
+              });
+              firstField?.focus({ preventScroll: true });
+            }}
+          >
+            QUERO MEU DIAGNÓSTICO
+          </Button>
+        </div>
+      </section>
     </div>
   );
 }

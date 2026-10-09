@@ -181,14 +181,14 @@
   color: var(--graphite);
   font-family: 'Onest', system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  height: 100dvh;
-  overflow: hidden;
+  min-height: 100dvh;
+  overflow-x: clip;
 }
 
 .nl-root .nl-split {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  height: 100dvh;
+  min-height: 100dvh;
 }
 
 /* ---------- Left / editorial ---------- */
@@ -216,7 +216,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: clamp(16px, 3vh, 40px);
-  height: 100%;
+  min-height: 100%;
   padding: clamp(24px, 4.5vh, 52px) clamp(32px, 5vw, 76px);
   overflow: hidden;
   color: #EDE8E1;
@@ -261,9 +261,9 @@
 .nl-root h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 400;
-  font-size: clamp(30px, min(4vw, 5.4vh), 54px);
+  font-size: clamp(30px, 5.4vh, 54px);
   line-height: 1.08;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: #F8F5F0;
   margin: 0 0 clamp(10px, 1.8vh, 20px) 0;
   max-width: 15ch;
@@ -326,7 +326,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: clamp(24px, 4.5vh, 52px) clamp(28px, 4.5vw, 72px) clamp(16px, 2.4vh, 26px);
-  height: 100%;
+  min-height: 100%;
   overflow: hidden;
 }
 
@@ -439,6 +439,112 @@
   color: #A79E93;
   padding-top: clamp(12px, 2.4vh, 28px);
   border-top: 1px solid var(--divider);
+}
+
+/* Full-width continuation of the diagnosis page */
+.nl-root .nl-section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(28px, 4.5vw, 72px);
+}
+
+.nl-root .nl-founders {
+  background: var(--ivory);
+  color: var(--graphite);
+  border-top: 1px solid var(--divider);
+  padding: clamp(44px, 7vh, 76px) 0;
+}
+
+.nl-root .nl-founders h2,
+.nl-root .nl-final h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 0 0 20px;
+}
+
+.nl-root .nl-founders-intro {
+  max-width: 70ch;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+.nl-root .nl-founders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 36px;
+}
+
+.nl-root .nl-founder {
+  border-top: 1px solid var(--divider);
+  padding-top: 24px;
+}
+
+.nl-root .nl-founder h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 0 0 10px;
+}
+
+.nl-root .nl-founder-role {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.nl-root .nl-founder-registration {
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--bronze-deep);
+  margin: 0;
+}
+
+.nl-root .nl-founder-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+.nl-root .nl-final {
+  border-top: 1px solid var(--divider);
+  padding: 44px 0 52px;
+  text-align: center;
+  background: var(--ivory);
+}
+
+.nl-root .nl-final-cta {
+  width: min(100%, 420px);
+  height: auto;
+  min-height: 48px;
+  border: none;
+  border-radius: 0;
+  padding: 17px 20px;
+  background: var(--graphite);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 2.4px;
+  white-space: normal;
+  transition: background 0.25s ease;
+}
+
+.nl-root .nl-final-cta:hover { background: var(--bronze-deep); color: var(--white); }
+.nl-root .nl-final-cta:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+
+@media (max-width: 600px) {
+  .nl-root .nl-founders-grid { grid-template-columns: 1fr; gap: 28px; }
+  .nl-root .nl-founders h2, .nl-root .nl-final h2 { font-size: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
