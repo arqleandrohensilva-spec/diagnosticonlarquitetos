@@ -2,7 +2,7 @@
 export const GOOGLE_ADS_ID = 'AW-18504034395';
 
 // Rótulo da conversão (parte depois da barra em send_to). Vazio = evento não é enviado.
-export const GOOGLE_ADS_LEAD_LABEL = '';
+export const GOOGLE_ADS_LEAD_LABEL = 'JH_gCKTXmJcdENvQtPdE';
 
 type Gtag = (...args: unknown[]) => void;
 
