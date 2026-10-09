@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { DiagnosisFounders } from '@/components/diagnosis-founders';
 import { getDiagnosisCopy } from '@/lib/diagnosis-copy';
+import { trackLeadConversion } from '@/lib/google-ads';
 
 export const Route = createFileRoute('/')({
   component: DiagnosticoPage,
@@ -90,6 +91,8 @@ function DiagnosticoPage() {
     } catch {
       // falha no banco não impede o envio
     }
+
+    trackLeadConversion();
 
     const url = `https://wa.me/5512996235559?text=${encodeURIComponent(mensagem)}`;
     const win = window.open(url, '_blank', 'noopener,noreferrer');
