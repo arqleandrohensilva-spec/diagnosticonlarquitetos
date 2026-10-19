@@ -560,3 +560,41 @@
   .nl-root .nl-form-col { height: auto; overflow: visible; padding: 44px 28px 24px; }
   .nl-root .nl-form-wrap { max-width: none; }
 }
+
+/* Hero CTAs */
+.nl-root .nl-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 clamp(16px, 3.4vh, 36px) 0; }
+.nl-root .nl-hero-cta {
+  font-family: inherit; font-size: 11.5px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+  padding: 15px 22px; border-radius: 0; cursor: pointer; transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.nl-root .nl-hero-cta--form { background: #F6F2EC; color: var(--graphite); border: 1px solid #F6F2EC; }
+.nl-root .nl-hero-cta--form:hover { background: var(--bronze); border-color: var(--bronze); color: #fff; }
+.nl-root .nl-hero-cta--wa { background: transparent; color: #F6F2EC; border: 1px solid rgba(246,242,236,0.45); }
+.nl-root .nl-hero-cta--wa:hover { border-color: var(--bronze); color: #fff; }
+.nl-root .nl-hero-cta:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+/* No desktop o formulário já está ao lado: só o WhatsApp aparece no hero */
+@media (min-width: 901px) { .nl-root .nl-hero-cta--form { display: none; } }
+
+.nl-root .nl-wa-alt {
+  display: block; width: 100%; margin-top: 14px; background: none; border: none; cursor: pointer;
+  font-family: inherit; font-size: 12.5px; color: var(--bronze-deep); text-decoration: underline; text-underline-offset: 3px;
+}
+.nl-root .nl-wa-alt:hover { color: var(--graphite); }
+
+/* Projetos */
+.nl-root .nl-projects { background: var(--white, #fff); color: var(--graphite); border-top: 1px solid var(--divider); padding: clamp(44px, 7vh, 76px) 0; }
+.nl-root .nl-projects h2 {
+  font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.2; letter-spacing: 0; margin: 0 0 28px;
+}
+.nl-root .nl-projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.nl-root .nl-project { margin: 0; }
+.nl-root .nl-project img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.nl-root .nl-project figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--divider); margin-top: 12px; }
+.nl-root .nl-project-name { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; }
+.nl-root .nl-project-local { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); align-self: center; }
+@media (max-width: 600px) {
+  .nl-root .nl-projects-grid { grid-template-columns: 1fr; gap: 24px; }
+  .nl-root .nl-projects h2 { font-size: 30px; }
+  .nl-root .nl-hero-cta { width: 100%; }
+  .nl-root .nl-project figcaption { flex-direction: column; gap: 4px; }
+}

@@ -5,6 +5,7 @@ import heroImg from '@/assets/arq-hero.jpg';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { DiagnosisFounders } from '@/components/diagnosis-founders';
+import { DiagnosisProjects } from '@/components/diagnosis-projects';
 import { getDiagnosisCopy } from '@/lib/diagnosis-copy';
 import { trackLeadConversion } from '@/lib/google-ads';
 import { trackMetaLead } from '@/lib/meta-pixel';
@@ -106,6 +107,41 @@ function DiagnosticoPage() {
   }
 
 
+  function irParaFormulario() {
+    const form = document.getElementById('diagnostico-form');
+    const firstField = document.getElementById('nome');
+    form?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'center',
+    });
+    firstField?.focus({ preventScroll: true });
+  }
+
+  function falarNoWhatsapp() {
+    trackLeadConversion();
+    trackMetaLead();
+    // registra o contato direto no painel, com a origem da visita
+    supabase
+      .from('leads')
+      .insert({
+        nome: '(contato direto pelo WhatsApp)',
+        whatsapp: '',
+        situacao: 'Clicou em falar pelo WhatsApp',
+        utm_source: utmSource,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
+        utm_content: utmContent,
+      })
+      .then(
+        () => undefined,
+        () => undefined,
+      );
+    const texto = 'Olá! Vim pelo site da NL Arquitetos e gostaria de saber mais sobre o diagnóstico do meu projeto.';
+    const url = `https://wa.me/5512996235559?text=${encodeURIComponent(texto)}`;
+    const win = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!win) window.location.href = url;
+  }
+
   return (
     <div className="nl-root">
       <div className="nl-split">
@@ -122,6 +158,15 @@ function DiagnosticoPage() {
               <p className="kicker">Diagnóstico gratuito</p>
               <h1>{heroCopy.title}</h1>
               <p className="sub">{heroCopy.subtitle}</p>
+
+              <div className="nl-hero-ctas">
+                <button type="button" className="nl-hero-cta nl-hero-cta--form" onClick={irParaFormulario}>
+                  Quero meu diagnóstico
+                </button>
+                <button type="button" className="nl-hero-cta nl-hero-cta--wa" onClick={falarNoWhatsapp}>
+                  Prefiro falar pelo WhatsApp
+                </button>
+              </div>
 
               <ol className="nl-steps">
                 {etapas.map(e => (
@@ -184,12 +229,16 @@ function DiagnosticoPage() {
                 {isSubmitting ? 'Enviando...' : 'Quero meu diagnóstico'}
               </button>
               <p className="nl-note">Resposta em até 24h úteis, após conversa rápida com o arquiteto · Sem custo · Sem compromisso</p>
+              <button type="button" className="nl-wa-alt" onClick={falarNoWhatsapp}>
+                Prefere conversar direto? Fale pelo WhatsApp
+              </button>
             </form>
           </div>
 
           <footer className="footer">NL Arquitetos · A arquitetura como decisão</footer>
         </section>
       </div>
+      <DiagnosisProjects />
       <DiagnosisFounders />
       <section className="nl-final" aria-labelledby="nl-final-title">
         <div className="nl-section-inner">
@@ -198,15 +247,7 @@ function DiagnosticoPage() {
             type="button"
             variant="ghost"
             className="nl-final-cta"
-            onClick={() => {
-              const form = document.getElementById('diagnostico-form');
-              const firstField = document.getElementById('nome');
-              form?.scrollIntoView({
-                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
-                block: 'center',
-              });
-              firstField?.focus({ preventScroll: true });
-            }}
+            onClick={irParaFormulario}
           >
             QUERO MEU DIAGNÓSTICO
           </Button>
