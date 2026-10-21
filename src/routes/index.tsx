@@ -168,6 +168,11 @@ function DiagnosticoPage() {
                 </button>
               </div>
 
+              <p className="nl-preco">
+                <strong>Quanto custa um projeto?</strong> Depende do escopo: área, tipo de obra e documentação.
+                No diagnóstico gratuito entendemos o seu caso, e você recebe uma proposta com valor claro, sem compromisso.
+              </p>
+
               <ol className="nl-steps">
                 {etapas.map(e => (
                   <li key={e.n}>

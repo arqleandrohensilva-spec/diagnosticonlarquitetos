@@ -598,3 +598,11 @@
   .nl-root .nl-hero-cta { width: 100%; }
   .nl-root .nl-project figcaption { flex-direction: column; gap: 4px; }
 }
+
+/* Nota de preço no hero */
+.nl-root .nl-preco {
+  max-width: 44ch; margin: 0 0 clamp(16px, 3vh, 32px) 0; padding-left: 14px;
+  border-left: 2px solid var(--bronze);
+  font-size: 13px; line-height: 1.65; color: rgba(240,235,228,0.72);
+}
+.nl-root .nl-preco strong { color: #F1ECE5; font-weight: 500; }
